@@ -2,6 +2,9 @@
 XenForo API library
 
 
+
+## USERS
+
 #### Api.find_name(username)
 Get user object by username
 
@@ -12,7 +15,7 @@ Return [tye user](https://xenforo.com/community/pages/api-endpoints/#type_User) 
 Get user object by email
 
 Return list, [type user](https://xenforo.com/community/pages/api-endpoints/#type_User) || None
-|
+
 
 #### Api.users(page)
 Get dict users of PAGE
@@ -30,3 +33,18 @@ Return boolean
 Add user avatar from path
 
 Return boolean
+
+
+
+## POSTS
+
+#### Api.thread(forum_id, user_id, title, message)
+Publish thread
+
+Return thread_id
+
+#### Api.post(thread_id, user_id, message)
+Publish post in thread
+
+Return boolean
+

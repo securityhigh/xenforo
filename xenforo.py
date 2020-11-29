@@ -43,7 +43,7 @@ class Api:
 
 		except:
 			return None
-	
+
 
 	def users(self, page=1):
 		users = {}
@@ -78,6 +78,31 @@ class Api:
 
 		try:
 			response = requests.post(url=url, files=files, headers=self.headers)
+			return response.json()["success"]
+
+		except:
+			return False
+
+
+	def thread(self, forum_id, user_id, title, message):
+		headers["XF-Api-User"] = str(user_id)
+		url = self.url + f"/api/threads/?node_id={forum_id}&title={title}&message={message}"
+
+		try:
+			response = requests.post(url=url, headers=self.headers)
+			return int(response.json()["thread"]["thread_id"])
+
+		except:
+			return 0
+
+
+	def post(self, thread_id, user_id, message):
+		headers["XF-Api-User"] = str(user_id)
+
+		url = self.url + f"/api/posts/?thread_id={thread_id}&message={message}"
+
+		try:
+			response = requests.post(url=target, headers=headers)
 			return response.json()["success"]
 
 		except:
